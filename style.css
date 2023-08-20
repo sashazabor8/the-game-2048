@@ -1,0 +1,125 @@
+@keyframes showTile {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: antiquewhite;
+}
+
+.score {
+  color: antiquewhite;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#game-board {
+  --cell-size: 16vmin;
+  --cell-gap: 1.3vmin;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, var(--cell-size));
+  grid-template-rows: repeat(4, var(--cell-size));
+  gap: var(--cell-gap);
+
+  border-radius: 1vmin;
+}
+
+.cell {
+  background-color: #444;
+  border-radius: 1vmin;
+}
+
+.tile {
+  --y: 1;
+  --x: 2;
+  position: absolute;
+  left: calc(var(--y) * (var(--cell-size) + 1.3vmin));
+  top: calc(var(--x) * (var(--cell-size) + 1.3vmin));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--cell-size);
+  height: var(--cell-size);
+
+  border-radius: 1vmin;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6vmin;
+  font-weight: bold;
+  background-color: hsl(25, 60%, var(--bg-lightness));
+  color: hsl(20, 25%, var(--text-lightness));
+
+  transition: 100ms;
+  animation: showTile 200ms;
+}
+
+#game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 11; /* Убедитесь, что модальное окно находится над бэкдропом */
+  width: 200px;
+  height: 200px;
+  max-width: 80%; /* Максимальная ширина модального окна */
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modal-title,
+.modal-score {
+  color: #333;
+}
+
+.modal-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+
+  transition: scale 250ms linear;
+}
+
+.modal-button:hover,
+.modal-button:focus {
+  scale: 1.1;
+}
